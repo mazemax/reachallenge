@@ -6,8 +6,7 @@ Description
 
 - The application is a simulation of a toy robot moving on a square tabletop, of dimensions 5 units x 5 units.
 - There are no other obstructions on the table surface.
-- The robot is free to roam around the surface of the table, but must be
-  prevented from falling to destruction. Any movement that would result in the robot falling from the table must be prevented, however further valid movement commands must still be allowed.
+- The robot is free to roam around the surface of the table, but must be prevented from falling to destruction. Any movement that would result in the robot falling from the table must be prevented, however further valid movement commands must still be allowed.
 
 Create an application that can read in commands of the following (textual) form:
 
@@ -74,11 +73,8 @@ Expected output
 Deliverables
 ------------
 
-Please provide your source code, and any test code/data you using in
-developing your solution.
+Please provide your source code, and any test code/data you using in developing your solution.
 
-Please engineer your solution to a standard you consider suitable for
-production. It is not required to provide any graphical output showing the
-movement of the toy robot.
+Please engineer your solution to a standard you consider suitable for production. It is not required to provide any graphical output showing the movement of the toy robot.
 
 Please do not put your name in any of the submitted code since this makes it harder for us to review your submission anonymously.
