@@ -25,12 +25,15 @@ export let getFacingMoment = (facing) => {
 };
 
 /*
- * Get FacingOptions according to provided degree
+ * Get Facing according to provided degree
  */
-export let getFacingOptions = (degree) => {
+export let getFacingByDegree = (degree) => {
+    if (isNaN(degree) || typeof degree !== "number") throw new Error("Invalid degree: " + degree);
+
     const rDegree = parseInt((degree + 360) % 360, 10);
     for (let f in FacingOptions) {
         if (rDegree === FacingOptions[f].degree) return f;
     }
+
     throw new Error("Invalid degree: " + degree);
 };

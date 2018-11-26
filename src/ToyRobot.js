@@ -1,21 +1,19 @@
 import TableTop from "./TableTop";
-import { isValid, getFacingOptions, getFacingDegree, getFacingMoment } from "./FacingUtils";
+import { isValid, getFacingByDegree, getFacingDegree, getFacingMoment } from "./FacingUtils";
 
 class ToyRobot {
     /*
      * Initializing ToyRobot
      */
     constructor () {
-        const tableTop = new TableTop();
-
-        this.facing = null;
-        this.tabletop = tableTop;
+        this.tabletop = new TableTop();
         this.x = null;
         this.y = null;
+        this.facing = null;
     }
 
     /*
-     * Check if this move is off the table
+     * Set facing of robot
      */
     setFacing (facing) {
         if (typeof facing !== "string") {
@@ -23,7 +21,7 @@ class ToyRobot {
         }
         facing = facing.toUpperCase();
         if (!isValid(facing)) {
-            throw Error("Invalid facing parameter value: " + facing);
+            throw new Error("Invalid facing parameter value: " + facing);
         }
         this.facing = facing;
     }
@@ -51,7 +49,7 @@ class ToyRobot {
         let newY = this.y + nextY;
 
         if (this.tabletop.checkOutOfBound(newX, newY)) {
-            return false;
+            throw new Error(newX + "," + newY + " is out of tabletop boundary!");
         } else {
             this.x = newX;
             this.y = newY;
@@ -67,7 +65,7 @@ class ToyRobot {
 
         let degree = getFacingDegree(this.facing);
         degree -= 90;
-        this.facing = getFacingOptions(degree);
+        this.facing = getFacingByDegree(degree);
         return true;
     }
 
@@ -79,7 +77,7 @@ class ToyRobot {
 
         let degree = getFacingDegree(this.facing);
         degree += 90;
-        this.facing = getFacingOptions(degree);
+        this.facing = getFacingByDegree(degree);
         return true;
     }
 
