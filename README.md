@@ -1,80 +1,37 @@
-Toy Robot Simulator
-===================
+<div align="center">
+  <img width="128" height="128" src="http://icons.iconarchive.com/icons/diversity-avatars/avatars/128/robot-03-icon.png" />
+  <h1>Toy Robot Simulator</h1>
+  <p align="center">Simulation of a toy robot moving on a square tabletop</p>
+</div>
 
-Description
------------
+<h2 align="center">Requirements</h2>
 
-- The application is a simulation of a toy robot moving on a square tabletop, of dimensions 5 units x 5 units.
-- There are no other obstructions on the table surface.
-- The robot is free to roam around the surface of the table, but must be prevented from falling to destruction. Any movement that would result in the robot falling from the table must be prevented, however further valid movement commands must still be allowed.
+* Mac OS X, Windows, or Linux
+* [Node.js](https://nodejs.org/) v8.12 or newer
+* [NPM](https://www.npmjs.com/) v6.4 or newer
 
-Create an application that can read in commands of the following (textual) form:
+<h2 align="center">Install Dependencies</h2>
 
-    PLACE X,Y,F
-    MOVE
-    LEFT
-    RIGHT
-    REPORT
+```bash
+npm install
+```
 
-- PLACE will put the toy robot on the table in position X,Y and facing NORTH, SOUTH, EAST or WEST.
-- The origin (0,0) can be considered to be the SOUTH WEST most corner.
-- The first valid command to the robot is a PLACE command, after that, any sequence of commands may be issued, in any order, including another PLACE command. The application should discard all commands in the sequence until a valid PLACE command has been executed.
-- MOVE will move the toy robot one unit forward in the direction it is currently facing.
-- LEFT and RIGHT will rotate the robot 90 degrees in the specified direction without changing the position of the robot.
-- REPORT will announce the X,Y and F of the robot. This can be in any form, but standard output is sufficient.
+<h2 align="center">Execute App</h2>  
 
-- A robot that is not on the table can choose to ignore the MOVE, LEFT, RIGHT and REPORT commands.
-- Input can be from a file, or from standard input, as the developer chooses.
-- Provide test data to exercise the application.
-- The application must be a command line application.
+```bash
+npm run start
+```
 
-Constraints
------------
+<h2 align="center">Execute Tests</h2>  
 
-- The toy robot must not fall off the table during movement. This also includes the initial placement of the toy robot.
-- Any move that would cause the robot to fall must be ignored.
+```bash
+npm run test
+```
 
-Example Input and Output
-------------------------
+<h2 align="center">Generate Coverage Report</h2>  
 
-### Example a
+```bash
+npm run coverage
+```
 
-    PLACE 0,0,NORTH
-    MOVE
-    REPORT
-
-Expected output:
-
-    0,1,NORTH
-
-### Example b
-
-    PLACE 0,0,NORTH
-    LEFT
-    REPORT
-
-Expected output:
-
-    0,0,WEST
-
-### Example c
-
-    PLACE 1,2,EAST
-    MOVE
-    MOVE
-    LEFT
-    MOVE
-    REPORT
-
-Expected output
-
-    3,3,NORTH
-
-Deliverables
-------------
-
-Please provide your source code, and any test code/data you using in developing your solution.
-
-Please engineer your solution to a standard you consider suitable for production. It is not required to provide any graphical output showing the movement of the toy robot.
-
-Please do not put your name in any of the submitted code since this makes it harder for us to review your submission anonymously.
+<img width="500" height="300" src="coverage/CoverageScreenshot.png" />
