@@ -5,10 +5,11 @@
 </div>
 
 <h2 align="center">Requirements</h2>
-
-* Mac OS X, Windows, or Linux
-* [Node.js](https://nodejs.org/) v8.12 or newer
-* [NPM](https://www.npmjs.com/) v6.4 or newer
+<div align="center">
+&bull; Mac OS X, Windows, or Linux<br/>
+&bull; <a href="https://nodejs.org/">Node.js</a> v8.12 or newer<br/>
+&bull; <a href="https://www.npmjs.com/">NPM v6.4</a> or newer<br/>
+</div>
 
 <h2 align="center">Install Dependencies</h2>
 
