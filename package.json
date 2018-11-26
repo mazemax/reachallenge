@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx babel src --out-dir dist -s",
     "start": "npm run build && node --inspect ./dist/index.js",
-    "lint": "eslint src/**",
+    "lint": "eslint src/** --debug",
     "test": "jest src --detectOpenHandles",
     "coverage": "jest --collectCoverageFrom=src/**.js --coverage src --detectOpenHandles"
   },

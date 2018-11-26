@@ -36,3 +36,9 @@ npm run coverage
 ```
 
 <img width="900" height="250" src="coverage/CoverageScreenshot.png" />
+
+<h2 align="center">Execute Eslint</h2>  
+
+```bash
+npm run lint
+```
