@@ -34,4 +34,4 @@ npm run test
 npm run coverage
 ```
 
-<img width="500" height="300" src="coverage/CoverageScreenshot.png" />
+<img width="900" height="250" src="coverage/CoverageScreenshot.png" />
