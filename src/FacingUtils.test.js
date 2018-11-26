@@ -35,3 +35,7 @@ test('Get FacingOptions according to provided degree - 1', () => {
 test('Get FacingOptions according to provided degree - 2', () => {
     expect(() => getFacingByDegree(10)).toThrow();
 });
+
+test('Get FacingOptions according to provided degree - 3', () => {
+    expect(() => getFacingByDegree("10")).toThrow();
+});

@@ -4,8 +4,10 @@ import ToyRobot from "./ToyRobot";
 
 const vorpal = new Vorpal().delimiter("toyRobot$");
 
+/*
+ * Checking if toy robot has been placed on tabletop
+ */
 const isRobotPlaced = (args) => {
-    // Checking if toy robot has been placed on tabletop
     if (vorpal.activeCommand.parent.robotPlaced) {
         return true;
     } else {
@@ -18,13 +20,19 @@ vorpal.command("init",
     "Command to initialize Robot",
     {})
     .action((args, callback) => {
+        let data, err;
         try {
             vorpal.activeCommand.parent.toyRobot = new ToyRobot();
             vorpal.activeCommand.parent.robotPlaced = false;
+            data = {
+                toyRobot: vorpal.activeCommand.parent.toyRobot,
+                robotPlaced: vorpal.activeCommand.parent.robotPlaced
+            };
         } catch (e) {
+            err = e;
             process.stdout.write(chalk.red("Error: " + e.message + "\n"));
         }
-        callback();
+        callback(err, data);
     })
     .hidden();
 
@@ -32,7 +40,8 @@ vorpal.command("PLACE <X,Y,F>",
                 "PLACE will put the toy robot on the table in position X,Y and facing NORTH, SOUTH, EAST or WEST.",
                 {})
     .action((args, callback) => {
-      try {
+        let data, err;
+        try {
           let parts = args["X,Y,F"].split(",");
           if (parts.length !== 3) {
               process.stdout.write(chalk.red("Error: Require parameter in X,Y,F format!\n"));
@@ -43,13 +52,14 @@ vorpal.command("PLACE <X,Y,F>",
               let finalF = f.toUpperCase();
 
               // process.stdout.write(chalk.green("Putting the toy robot on the table in position " + finalX + "," + finalY + "," + finalF + " \n"));
-              vorpal.activeCommand.parent.toyRobot.place(finalX, finalY, finalF);
+              data = vorpal.activeCommand.parent.toyRobot.place(finalX, finalY, finalF);
               vorpal.activeCommand.parent.robotPlaced = true;
           }
-      } catch (e) {
+        } catch (e) {
+          err = e;
           process.stdout.write(chalk.red("Error: " + e.message + "\n"));
-      }
-      callback();
+        }
+        callback(err, data);
     });
 
 vorpal.command("MOVE",
@@ -57,13 +67,15 @@ vorpal.command("MOVE",
                 {})
     .validate(isRobotPlaced)
     .action((args, callback) => {
+        let data, err;
         try {
             // process.stdout.write(chalk.green("Moving 1 unit forward. \n"));
-            vorpal.activeCommand.parent.toyRobot.move();
+            data = vorpal.activeCommand.parent.toyRobot.move();
         } catch (e) {
+            err = e;
             process.stdout.write(chalk.red("Error: " + e.message + "\n"));
         }
-        callback();
+        callback(err, data);
     });
 
 vorpal.command("LEFT",
@@ -71,13 +83,15 @@ vorpal.command("LEFT",
                 {})
     .validate(isRobotPlaced)
     .action((args, callback) => {
+        let data, err;
         try {
             // process.stdout.write(chalk.green("Turning left. \n"));
-            vorpal.activeCommand.parent.toyRobot.left();
+            data = vorpal.activeCommand.parent.toyRobot.left();
         } catch (e) {
+            err = e;
             process.stdout.write(chalk.red("Error: " + e.message + "\n"));
         }
-        callback();
+        callback(err, data);
     });
 
 vorpal.command("RIGHT",
@@ -85,13 +99,15 @@ vorpal.command("RIGHT",
                 {})
     .validate(isRobotPlaced)
     .action((args, callback) => {
+        let data, err;
         try {
             // process.stdout.write(chalk.green("Turning Right. \n"));
-            vorpal.activeCommand.parent.toyRobot.right();
+            data = vorpal.activeCommand.parent.toyRobot.right();
         } catch (e) {
+            err = e;
             process.stdout.write(chalk.red("Error: " + e.message + "\n"));
         }
-        callback();
+        callback(err, data);
     });
 
 vorpal.command("REPORT",
@@ -99,14 +115,16 @@ vorpal.command("REPORT",
                 {})
     .validate(isRobotPlaced)
     .action((args, callback) => {
+        let data, err;
         try {
-            let currentPosition = vorpal.activeCommand.parent.toyRobot.report();
+            data = vorpal.activeCommand.parent.toyRobot.report();
             // process.stdout.write(chalk.blue("Announcing X,Y and F. \n"));
-            process.stdout.write(chalk.blue(currentPosition.X + "," + currentPosition.Y + "," + currentPosition.F + " \n"));
+            process.stdout.write(chalk.blue(data.X + "," + data.Y + "," + data.F + " \n"));
         } catch (e) {
+            err = e;
             process.stdout.write(chalk.red("Error: " + e.message + "\n"));
         }
-        callback();
+        callback(err, data);
     });
 
 vorpal.exec('init', {}, (data) => {
@@ -120,3 +138,5 @@ process.on("uncaughtException", (err) => {
     process.stdout.write(chalk.red("Error: " + err.message + "\n"));
     vorpal.ui.cancel();
 });
+
+export { vorpal };

@@ -1,0 +1,5 @@
+"use strict";var _interopRequireDefault=require("@babel/runtime/helpers/interopRequireDefault");var _ToyRobot=_interopRequireDefault(require("./ToyRobot"));test('Instantiate ToyRobot',()=>{let robot=new _ToyRobot.default();expect(robot.tabletop.width).toBe(5);expect(robot.tabletop.height).toBe(5);expect(robot.x).toBe(null);expect(robot.y).toBe(null);expect(robot.facing).toBe(null);});test('Setting invalid facing of robot - 1',()=>{let robot=new _ToyRobot.default();expect(robot.setFacing("INVALID")).toThrow(new Error("Invalid facing parameter value: INVALID"));});test('Setting invalid facing of robot - 2',()=>{let robot=new _ToyRobot.default();expect(robot.setFacing(1)).toThrow(new Error("Invalid facing parameter type!"));});test('Setting valid facing of robot',()=>{let robot=new _ToyRobot.default();robot.setFacing('NORTH');expect(robot.facing).toBe('NORTH');});// test('Check if the table move is within the table width and height', () => {
+//     let robot = new ToyRobot();
+//     expect(tableTop.checkOutOfBound(1, 1)).toBe(false);
+// });
+//# sourceMappingURL=ToyRobot.test.js.map

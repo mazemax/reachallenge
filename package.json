@@ -7,8 +7,8 @@
     "build": "npx babel src --out-dir dist -s",
     "start": "npm run build && node --inspect ./dist/index.js",
     "lint": "eslint src/**",
-    "test": "jest src",
-    "coverage": "jest --collectCoverageFrom=src/**.js --coverage src"
+    "test": "jest src --detectOpenHandles",
+    "coverage": "jest --collectCoverageFrom=src/**.js --coverage src --detectOpenHandles"
   },
   "keywords": [
     "toy",
